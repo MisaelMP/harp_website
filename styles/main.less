@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Spectral');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 @colors: {
   primary--light: lighten(black, 20%);
   main-color: #f5a48a;
@@ -8,6 +9,11 @@
 }
 @padding: 2rem;
 @margin: 1rem;
+
+.primary-font (@font: 'Open Sans', @font-color: #F8F8FF) {
+  font-family: @font;
+  color: @font-color;
+}
 
 body,
 html {
@@ -20,9 +26,7 @@ html {
 
 .content {
   display: grid;
-  grid-template: "h h h h" 10%
-                 "a a m m" auto
-                 "f f f f" 10% e("/") 1fr 2fr 1fr 1fr;
+  grid-template: "h h h h" 6% "a a m m" auto "f f f f" 10% e("/") 1fr 2fr 1fr 1fr;
   font-family: "Helvetica";
   height: 100%;
   width: 100vw;
@@ -32,33 +36,77 @@ html {
 
 header {
   grid-area: h;
-  background-color: #aa5c4b;
   display: flex;
   z-index: 1;
-  font-family: 'Spectral', serif;
+  .primary-font();
 
-  .nav-menu {
-    background-color: @colors[dark];
-    width: 100%;
-    position: fixed;
-    list-style-type: none;
+  .nav {
+    &-menu {
+      background-color: @colors[dark];
+      width: 100%;
+      // padding: @padding;
+      position: fixed;
+      list-style-type: none;
+    }
 
-    & ul {
+    &__items {
       display: flex;
       flex-flow: row;
-      padding: @padding;
       margin: 0;
+      padding: 0;
       list-style: none;
+      padding: @padding;
+    }
 
-      a {
-        padding: @padding;
-        text-decoration: none;
-        color: @colors[white];
+    &__link {
+      padding: @padding;
+      text-decoration: none;
+      color: @colors[white];
 
-        &:hover {
-          background-color: @colors[white];
-          color: @colors[dark];
-        }
+      &:hover {
+        background-color: @colors[white];
+        color: @colors[dark];
+      }
+
+      &--active {
+        background-color: @colors[white];
+        color: @colors[dark];
+      }
+    }
+
+    &__link-toggle {
+      display: none;
+      color: @colors[white];
+      right: 0;
+      top: 0;
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    .nav,
+    .nav__items {
+      flex-direction: column;
+
+      &__items {
+        display: none;
+        padding-left: 0;
+      }
+
+      &__toggle-show {
+        display: flex;
+      }
+
+      &__link {
+          display: flex;
+          padding-left: @padding;
+      }
+      &__link-toggle {
+        align-self: flex-end;
+        display: initial;
+        cursor: pointer;
+        padding-left: @padding;
+      }
+      &-menu {
+        padding: @padding 0;
       }
     }
   }
@@ -87,31 +135,37 @@ aside {
   grid-area: a;
   display: flex;
   justify-content: center;
-  // text-align: center;
+  align-items: center;
   padding: 10% 5%;
 
   .aside__img {
     background-image: url("https://www.placecage.com/c/200/300");
     background-repeat: no-repeat;
     background-size: contain;
-    //object-fit: cover;
     width: 600px;
     height: 400px;
     position: relative;
   }
 
   .aside__square {
-  position: absolute;
-  background: @colors[bisel];
-  /* fallback */
-  background: linear-gradient(135deg, transparent 10px, @colors[bisel] 0) top left, linear-gradient(225deg, transparent 0, @colors[bisel] 0) top right, linear-gradient(315deg, transparent 10px, @colors[bisel] 0) bottom right, linear-gradient(45deg, transparent 0, @colors[bisel] 0) bottom left;
-  background-size: 50% 50%;
-  background-repeat: no-repeat;
-  width: 268px;
-  height: 100px;
-  bottom: 0;
-  text-align: center;
+    position: absolute;
+    background: @colors[bisel];
+    /* fallback */
+    background: linear-gradient(135deg, transparent 10px, @colors[bisel] 0) top left, linear-gradient(225deg, transparent 0, @colors[bisel] 0) top right, linear-gradient(315deg, transparent 10px, @colors[bisel] 0) bottom right, linear-gradient(45deg, transparent 0, @colors[bisel] 0) bottom left;
+    background-size: 50% 50%;
+    background-repeat: no-repeat;
+    width: 268px;
+    height: 100px;
+    bottom: 0;
+  }
 
+  .aside__text {
+    color: @colors[dark];
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: center;
+    padding-top: @padding;
   }
 }
 
@@ -150,6 +204,6 @@ h3 {
     background: rgb(63, 187, 164);
     border-left: 4px solid rgb(208, 42, 111);
     margin-bottom: 1rem;
-    padding: 1rem 5rem;;
+    padding: 1rem 5rem;
   }
 }
