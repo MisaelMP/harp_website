@@ -26,19 +26,20 @@
     }
   }
 
-  .about {
-    display: flex;
-    flex-flow: column wrap;
-    align-items: center;
-    margin-top: 10%;
+}
 
-    &__list-item {
-      list-style: none;
-      background: rgb(63, 187, 164);
-      border-left: 4px solid rgb(208, 42, 111);
-      margin-bottom: 1rem;
-      padding: 1rem 5rem;
-    }
+.about {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  margin-top: 10%;
+
+  &__list-item {
+    list-style: none;
+    background: rgb(103, 124, 120);
+    border-left: 4px solid rgb(208, 42, 111);
+    margin-bottom: 1rem;
+    padding: 1rem 5rem;
   }
 }
 
@@ -51,9 +52,14 @@
   height: 50%;
   // width: 50%;
   //
-  #map {
+  #map_item {
     height: 100%;
     width: 50%;
-    z-index: -1;
+  }
+  .map__button {
+    margin-top: 2rem;
+    color: #16161d;
+    padding: 2rem 5rem;
+    border: 1px solid #16161d;
   }
 }

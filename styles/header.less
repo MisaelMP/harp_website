@@ -5,16 +5,12 @@ header {
   .primary-font();
 
   .nav {
-    &-menu {
-      background-color: @colors[dark];
-      width: 100%;
-      position: fixed;
-      list-style-type: none;
-    }
+    background-color: @colors[dark];
+    width: 100%;
+    position: fixed;
 
     &__items {
       display: flex;
-      flex-flow: row;
       margin: 0;
       padding: 0;
       list-style: none;
@@ -22,13 +18,23 @@ header {
     }
 
     &__link {
-      padding: @padding;
+      padding: 0 @padding;
       text-decoration: none;
       color: @colors[white];
+      position: relative;
 
-      &:hover {
-        background-color: @colors[white];
-        color: @colors[dark];
+      &::after {
+        content: '';
+        position: absolute;
+        display: flex;
+        width: 0;
+        height: 2px;
+        background: @colors[white];
+        transition: width 0.3s;
+      }
+
+      &:hover::after {
+        width: 100%;
       }
 
       &--active {
@@ -48,6 +54,7 @@ header {
     .nav,
     .nav__items {
       flex-direction: column;
+      padding: @padding 0;
 
       &__items {
         display: none;
@@ -58,18 +65,11 @@ header {
         display: flex;
       }
 
-      &__link {
-          display: flex;
-          padding-left: @padding;
-      }
       &__link-toggle {
         align-self: flex-end;
         display: initial;
         cursor: pointer;
         padding-left: @padding;
-      }
-      &-menu {
-        padding: @padding 0;
       }
     }
   }
