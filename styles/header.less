@@ -51,14 +51,18 @@ header {
     }
   }
   @media only screen and (max-width: 768px) {
-    .nav,
-    .nav__items {
+
+    .nav {
       flex-direction: column;
       padding: @padding 0;
 
+      &__section {
+        margin-bottom: 1.4rem;
+      }
       &__items {
         display: none;
         padding-left: 0;
+        flex-direction: column;
       }
 
       &__toggle-show {
